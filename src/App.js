@@ -9,11 +9,19 @@ import PrivateRoute from './PrivateRoute';
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route exact path="/login" component={Login} />
-        <PrivateRoute  exact path="/staff" component={StaffDashboard} allowedRoles={['staff']} />
-        <PrivateRoute exact path="/admin" component={AdminDashboard} allowedRoles={['admin']} />
-      </Routes>
+     <Routes>
+  <Route exact path="/login" element={<Login />} />
+  <Route
+    exact
+    path="/staff"
+    element={<PrivateRoute component={StaffDashboard} allowedRoles={['staff']} />}
+  />
+  <Route
+    exact
+    path="/admin"
+    element={<PrivateRoute component={AdminDashboard} allowedRoles={['admin']} />}
+  />
+</Routes>
     </BrowserRouter>
   );
 }

@@ -1,9 +1,9 @@
 // AuthContext.js
 import React, { createContext, useState } from 'react';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState('');
 
@@ -17,9 +17,18 @@ export const AuthProvider = ({ children }) => {
     setRole('');
   };
 
+  const contextData =  {
+    isAuthenticated,
+    role,
+    login,
+    logout
+  }
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, role, login, logout }}>
+    <AuthContext.Provider value={contextData}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export { AuthProvider, AuthContext}
